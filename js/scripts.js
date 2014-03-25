@@ -10,11 +10,15 @@ function init () {
  * be implemented in an AJAX function
  */
 function setLoading (e) {
-	// Stop default click behavior
+	/*
+	 * Stop default click behavior, since this is only for demonstration.
+	 * We're not actually submitting anything anywhere
+	 */
 	e.preventDefault() ? e.preventDefault() : e.stopPropagation();
 
 	var msg = "Subscribing...",
 	    event = e;
+
 	showAlert('loading', msg);
 
 	setTimeout(function () {
