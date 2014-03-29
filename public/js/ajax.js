@@ -33,7 +33,15 @@ var Ajax = (function () {
 					cfg.successHandler(JSON.parse(this.responseText));
 				}
 				else if(cfg.errorHandler instanceof Function) { // Error
-					cfg.errorHandler(JSON.parse(this.responseText));
+					try {
+						cfg.errorHandler(JSON.parse(this.responseText));
+					}
+					catch(e) {
+						cfg.errorHandler();
+					}
+				}
+				else {
+					alert('Something went terribly wrong (' + request.status + '). Please try again later!');
 				}
 			}
 		};

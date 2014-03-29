@@ -24,7 +24,7 @@ function subscribe (e) {
 		}
 	};
 	var errorHandler = function () {
-		showAlert('error', 'Something went terribly wrong! Please try again.');
+		showAlert('error', 'Could not send request :(');
 	};
 	var beforeSend = function () {
 		showAlert('loading', 'Subscribing...');
