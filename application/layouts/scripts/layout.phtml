@@ -1,0 +1,40 @@
+<!-- application/layouts/scripts/layout.phtml -->
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Frontend Test</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<?php
+		$env = getenv('APPLICATION_ENV');
+		if ($env == 'development') {
+			echo $this->headLink()->appendStylesheet('css/normalize.css');
+			echo $this->headLink()->appendStylesheet('css/styles.css');
+		}
+		else {
+			echo $this->headLink()->appendStylesheet('dist/css/normalize.min.css');
+			echo $this->headLink()->appendStylesheet('dist/css/styles.min.css');
+		}
+	?>
+		
+	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.0/modernizr.min.js"></script>
+</head>
+<body>
+	<?php echo $this->render('header.phtml') ?>
+	<?php echo $this->layout()->content ?>
+	<?php echo $this->render('footer.phtml') ?>
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+	<?php
+		if ($env == 'development') {
+			echo $this->inlineScript()->appendFile('js/ajax.js');
+			echo $this->inlineScript()->appendFile('js/scripts.js');
+		}
+		else {
+			echo $this->inlineScript()->appendFile('dist/js/all.min.js');
+		}
+	?>
+</body>
+</html>
