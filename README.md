@@ -9,4 +9,4 @@ run ```cd public && gulp watch```
 
 ###minify/concatinate/optimize images
 
-```gulp```
+run ```gulp```
