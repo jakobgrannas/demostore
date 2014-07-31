@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	imagemin = require('gulp-imagemin'),
 	minifyCSS = require('gulp-minify-css'),
+	uncss = require('gulp-uncss'),
 	uglify = require('gulp-uglify'),
 	paths = {
 		scripts: './js/*.js',
@@ -19,11 +20,15 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('styles', function() {
+  var basePath = '../application/views/scripts/';
 	return gulp.src(paths.styles)
 		.pipe(minifyCSS())
 		.pipe(rename(function(path) {
 			path.extname = ".min.css"
 		}))
+    .pipe(uncss({
+      html: [basePath + 'index/index.phtml', basePath + 'footer.phtml', basePath + 'header.phtml']
+    }))
 		.pipe(gulp.dest('./dist/css/'));
 });
 
